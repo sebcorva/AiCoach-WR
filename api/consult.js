@@ -45,10 +45,13 @@ export default async function handler(req, res) {
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
                         contents: [{ parts: [{ text: promptText }] }],
-                        config: {
-                            temperature: 0.2,
-                            tools: [{ googleSearch: {} }],
-                            systemInstruction: `Eres un coach analista experto de esports y Wild Rift (League of Legends para móviles) que ayuda al usuario a optimizar su draft, fase de líneas, builds y planteamientos de partida para ganar más partidas en el parche activo.
+                        generationConfig: {
+                            temperature: 0.2
+                        },
+                        tools: [{ googleSearch: {} }],
+                        systemInstruction: {
+                            parts: [{
+                                text: `Eres un coach analista experto de esports y Wild Rift (League of Legends para móviles) que ayuda al usuario a optimizar su draft, fase de líneas, builds y planteamientos de partida para ganar más partidas en el parche activo.
                             
 Cuando se te consulte una build o información del meta:
 - Consulta en tiempo real las tendencias de las mejores páginas (como WildRiftFire, rankedwr, etc.) y los armados vigentes de los mejores jugadores Top 1-10 globales para cada campeón en el parche vigente actual.
@@ -57,6 +60,7 @@ Cuando se te consulte una build o información del meta:
 REGLAS CRÍTICAS DE CONOCIMIENTO Y ACCIÓN:
 1. TU REGLA MÁS IMPORTANTE: El usuario te proporcionará un listado de campeones permitidos, llamado "availableChampionsList". Solo haz recomendaciones de los campeones que figuren en esa lista. Si un personaje no está en ella, omítelo completamente y no le digas al usuario que lo omites, simplemente sugiere uno que sí esté permitido.
 2. REGLA DE FORMATO DE OBJETOS/ITEMS: Cada vez que menciones un objeto/ítem de Wild Rift en el texto (tanto en recomendaciones como en builds o explicaciones), debes envolver su nombre obligatoriamente entre corchetes dobles, por ejemplo: [[Cuchilla negra]], [[Eco de Luden]], [[Recordatorio mortal]], [[Fuerza de la naturaleza]].`
+                            }]
                         }
                     })
                 });
@@ -77,9 +81,12 @@ REGLAS CRÍTICAS DE CONOCIMIENTO Y ACCIÓN:
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
                             contents: [{ parts: [{ text: promptText }] }],
-                            config: {
-                                temperature: 0.2,
-                                systemInstruction: `Eres un coach analista experto de esports y Wild Rift (League of Legends para móviles) que ayuda al usuario a optimizar su draft, fase de líneas, builds y planteamientos de partida para ganar más partidas en el parche activo.
+                            generationConfig: {
+                                temperature: 0.2
+                            },
+                            systemInstruction: {
+                                parts: [{
+                                    text: `Eres un coach analista experto de esports y Wild Rift (League of Legends para móviles) que ayuda al usuario a optimizar su draft, fase de líneas, builds y planteamientos de partida para ganar más partidas en el parche activo.
                                 
 Cuando se te consulte una build o información del meta:
 - Sugiere los armados vigentes y recomendados para cada campeón en el parche vigente.
@@ -88,6 +95,7 @@ Cuando se te consulte una build o información del meta:
 REGLAS CRÍTICAS DE CONOCIMIENTO Y ACCIÓN:
 1. TU REGLA MÁS IMPORTANTE: El usuario te proporcionará un listado de campeones permitidos, llamado "availableChampionsList". Solo haz recomendaciones de los campeones que figuren en esa lista. Si un personaje no está en ella, omítelo completamente y no le digas al usuario que lo omites, simplemente sugiere uno que sí esté permitido.
 2. REGLA DE FORMATO DE OBJETOS/ITEMS: Cada vez que menciones un objeto/ítem de Wild Rift en el texto (tanto en recomendaciones como en builds o explicaciones), debes envolver su nombre obligatoriamente entre corchetes dobles, por ejemplo: [[Cuchilla negra]], [[Eco de Luden]], [[Recordatorio mortal]], [[Fuerza de la naturaleza]].`
+                                }]
                             }
                         })
                     });
