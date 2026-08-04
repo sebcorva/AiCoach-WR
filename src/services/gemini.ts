@@ -58,10 +58,10 @@ export const getRelevantItemChanges = (): string => {
 
 // Realiza la petición a la API de Gemini intentando múltiples modelos de fallback
 export const fetchGeminiResponse = async (promptText: string, apiKey: string): Promise<string> => {
-    const apiGatewayUrl = import.meta.env.VITE_API_GATEWAY_URL;
+    const apiGatewayUrl = import.meta.env.VITE_API_GATEWAY_URL || (import.meta.env.PROD ? '/api/consult' : '');
 
     if (apiGatewayUrl) {
-        // En producción / AWS, llamamos al API Gateway para proteger la clave secreta
+        // En producción (Vercel / AWS), llamamos al endpoint proxy para no exponer la clave de la API
         const response = await fetch(apiGatewayUrl, {
             method: 'POST',
             headers: {
@@ -72,7 +72,7 @@ export const fetchGeminiResponse = async (promptText: string, apiKey: string): P
 
         if (!response.ok) {
             const errData = await response.json().catch(() => ({}));
-            throw new Error(errData.message || `Error en la puerta de enlace de API Gateway: ${response.status}`);
+            throw new Error(errData.message || `Error del servidor de consultas: ${response.status}`);
         }
 
         const data = await response.json();

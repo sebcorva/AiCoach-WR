@@ -1,51 +1,33 @@
-const API_URL = "https://generativelanguage.googleapis.com/v1beta/models";
+export default async function handler(req, res) {
+    // CORS Headers para habilitar peticiones locales si fuese necesario
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+    res.setHeader(
+        'Access-Control-Allow-Headers',
+        'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+    );
 
-exports.handler = async (event) => {
-    const corsHeaders = {
-        "Access-Control-Allow-Origin": "*", // O el dominio de tu CloudFront en producción
-        "Access-Control-Allow-Headers": "Content-Type",
-        "Access-Control-Allow-Methods": "POST,OPTIONS"
-    };
+    if (req.method === 'OPTIONS') {
+        return res.status(200).end();
+    }
 
-    // Manejar CORS Preflight
-    if (event.requestContext && event.requestContext.http && event.requestContext.http.method === "OPTIONS") {
-        return {
-            statusCode: 200,
-            headers: corsHeaders,
-            body: ""
-        };
+    if (req.method !== 'POST') {
+        return res.status(405).json({ message: 'Method Not Allowed' });
     }
 
     try {
-        if (!event.body) {
-            return {
-                statusCode: 400,
-                headers: corsHeaders,
-                body: JSON.stringify({ message: "Request body is missing" })
-            };
-        }
-
-        const body = JSON.parse(event.body);
-        const promptText = body.promptText;
-
+        const { promptText } = req.body;
         if (!promptText) {
-            return {
-                statusCode: 400,
-                headers: corsHeaders,
-                body: JSON.stringify({ message: "promptText is required" })
-            };
+            return res.status(400).json({ message: 'promptText is required in request body' });
         }
 
         const apiKey = process.env.GEMINI_API_KEY;
         if (!apiKey) {
-            return {
-                statusCode: 500,
-                headers: corsHeaders,
-                body: JSON.stringify({ message: "GEMINI_API_KEY is not configured on Lambda environment variables" })
-            };
+            return res.status(500).json({ message: 'GEMINI_API_KEY is not configured on Vercel environment variables' });
         }
 
-        // Modelos soportados y vigentes en la API de Google Gen AI
+        const API_URL = "https://generativelanguage.googleapis.com/v1beta/models";
         const models = [
             "gemini-2.5-flash",
             "gemini-2.0-flash",
@@ -118,7 +100,7 @@ REGLAS CRÍTICAS DE CONOCIMIENTO Y ACCIÓN:
                         throw new Error(data.error ? data.error.message : "Fallo en el fallback");
                     }
                 } catch (fallbackErr) {
-                    console.error(`Modelo ${model} falló completamente en fallback.`, fallbackErr);
+                    console.error(`Modelo ${model} falló completamente en el fallback.`, fallbackErr);
                     lastError = fallbackErr;
                 }
             }
@@ -128,17 +110,9 @@ REGLAS CRÍTICAS DE CONOCIMIENTO Y ACCIÓN:
             throw lastError || new Error("No se pudo conectar a ningún modelo de Gemini disponible.");
         }
 
-        return {
-            statusCode: 200,
-            headers: corsHeaders,
-            body: JSON.stringify({ text: resultText })
-        };
+        return res.status(200).json({ text: resultText });
     } catch (error) {
-        console.error("Lambda Error:", error);
-        return {
-            statusCode: 500,
-            headers: corsHeaders,
-            body: JSON.stringify({ message: error.message || "Internal Server Error" })
-        };
+        console.error("Vercel Serverless Function Error:", error);
+        return res.status(500).json({ message: error.message || "Internal Server Error" });
     }
-};
+}
