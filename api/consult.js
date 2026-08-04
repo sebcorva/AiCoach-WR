@@ -30,8 +30,9 @@ export default async function handler(req, res) {
         const API_URL_BETA = "https://generativelanguage.googleapis.com/v1beta/models";
         const API_URL_V1 = "https://generativelanguage.googleapis.com/v1/models";
         const models = [
-            "gemini-2.5-flash",
-            "gemini-2.0-flash",
+            "gemini-3.6-flash",
+            "gemini-3.5-flash",
+            "gemini-3.5-flash-lite",
             "gemini-1.5-flash"
         ];
 
