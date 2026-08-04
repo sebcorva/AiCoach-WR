@@ -1,155 +1,398 @@
 [
-{
-    "version": "7.2b",
-    "highlights": [
-        "Ajustes de equilibrio de seguimiento para campeones, objetos, runas y sistemas.",
-        "Ajustes a campeones dominantes (Jayce, Nidalee, Ambessa) y mejoras a selecciones de bajo rendimiento (Aurora, Ekko, Lee Sin).",
-        "Cambios a objetos (Guantelete de hielo, Eco de Luden, objetos de impacto crítico) y a la runa Botanista.",
-        "Ajustes al sistema de botines de campeón para reducir el castigo por ventaja inicial.",
-        "Eliminación de la regla de descenso por inactividad a partir de nivel Maestro."
-    ],
-    "champions": [
-        {
-            "name": "Jayce",
-            "type": "nerf",
-            "summary": "Reducción de su armadura básica para disminuir la seguridad en sus intercambios iniciales en calle."
-        },
-        {
-            "name": "Nidalee",
-            "type": "nerf",
-            "summary": "Reducción de durabilidad básica y velocidad de movimiento de su pasiva para ajustar su dominio e intangibilidad."
-        },
-        {
-            "name": "Ambessa",
-            "type": "nerf",
-            "summary": "Reducción del daño de ejecución y mitigación de daño en su habilidad definitiva."
-        },
-        {
-            "name": "Aurora",
-            "type": "buff",
-            "summary": "Aumento del daño en su primera y tercera habilidad para compensar el impacto de los cambios de objetos y runas."
-        },
-        {
-            "name": "Sona",
-            "type": "nerf",
-            "summary": "Reducción de la curación de su segunda habilidad y aumento del enfriamiento de su definitiva."
-        },
-        {
-            "name": "Ekko",
-            "type": "buff",
-            "summary": "Aumento del escalado por poder de habilidad en su pasiva y en el daño por vida faltante de su segunda habilidad."
-        },
-        {
-            "name": "Kayle",
-            "type": "nerf",
-            "summary": "Reducción del daño e intercambio temprano junto a menores costes de maná para mejorar su gestión."
-        },
-        {
-            "name": "Hecarim",
-            "type": "nerf",
-            "summary": "Reducción de la velocidad de movimiento adicional tras impactar con su primera habilidad."
-        },
-        {
-            "name": "Lee Sin",
-            "type": "buff",
-            "summary": "Aumento del valor de escudo y omnisucción de su segunda habilidad para potenciar su rol de luchador."
-        },
-        {
-            "name": "Zilean",
-            "type": "nerf",
-            "summary": "Reducción del daño básico de la primera habilidad y mayor enfriamiento en su tercera habilidad."
-        }
-    ],
-    "items": [
-        {
-            "name": "Guantelete de hielo",
-            "type": "buff",
-            "summary": "Reducción de precio (-100 de oro) e incremento de vida máxima (+50)."
-        },
-        {
-            "name": "Eco de Luden",
-            "type": "buff",
-            "summary": "Aumento del daño de la pasiva Eco y reducción de 1 segundo en su enfriamiento."
-        },
-        {
-            "name": "Disparador magnético",
-            "type": "buff",
-            "summary": "Aumento del daño de ataque básico (+5 DA)."
-        },
-        {
-            "name": "Recuerdos de lord Dominik",
-            "type": "buff",
-            "summary": "Aumento del daño de ataque básico (+5 DA)."
-        },
-        {
-            "name": "Filoveloz de Navori",
-            "type": "buff",
-            "summary": "Reducción de precio (-100 de oro)."
-        }
-    ]
-},
-{
-    "version": "7.2a",
-    "highlights": [
-        "Ajustes de equilibrio para campeones dominantes en jungla (Nidalee, Warwick) y soporte (Senna).",
-        "Mejoras a Skarner y Yuumi para restaurar su impacto y presencia en partida.",
-        "Ajustes a la línea de objetos de Lágrima de la diosa (Manamune, Abrazo del serafín) y Hoja del rey arruinado.",
-        "Debilitación a las Botas quebrantarmaduras para reducir su efectividad general.",
-        "Ajustes de equilibrio, aumentos y ritmo de partida para el modo AAAARAM."
-    ],
-    "champions": [
-        {
-            "name": "Nidalee",
-            "type": "nerf",
-            "summary": "Reducción de su daño explosivo básico y del escalado de armadura/resistencia mágica en su forma felina."
-        },
-        {
-            "name": "Warwick",
-            "type": "nerf",
-            "summary": "Reducción ligera de la relación de daño de ataque en su pasiva y del escalado por poder de habilidad en su primera habilidad."
-        },
-        {
-            "name": "Skarner",
-            "type": "buff",
-            "summary": "Aumento del daño por vida máxima, mayor escudo y reducción de enfriamientos en sus habilidades básicas."
-        },
-        {
-            "name": "Senna",
-            "type": "nerf",
-            "summary": "Reducción del daño por vida actual en su pasiva y ajuste a la progresión del escudo de su definitiva."
-        },
-        {
-            "name": "Yuumi",
-            "type": "buff",
-            "summary": "Menor coste de maná en su tercera habilidad e incremento en la curación básica de su definitiva."
-        }
-    ],
-    "items": [
-        {
-            "name": "Lágrima de la diosa",
-            "type": "nerf",
-            "summary": "Reducción del maná obtenido por acumulación para frenar su velocidad de progresión."
-        },
-        {
-            "name": "Manamune",
-            "type": "nerf",
-            "summary": "Menor velocidad de acumulación de maná y reducción del daño adicional por relación de DA en Muramana."
-        },
-        {
-            "name": "Abrazo del serafín",
-            "type": "nerf",
-            "summary": "Reducción de la relación de maná que se convierte en escudo al activarse Salvavidas."
-        },
-        {
-            "name": "Hoja del rey arruinado",
-            "type": "nerf",
-            "summary": "Reducción del daño en función de la vida actual para campeones cuerpo a cuerpo."
-        },
-        {
-            "name": "Botas quebrantarmaduras",
-            "type": "nerf",
-            "summary": "Reducción de las estadísticas básicas de daño de ataque y penetración de armadura."
-        }
-    ]
-}
+    {
+        "version": "7.2b",
+        "highlights": [
+            "Ajustes de equilibrio de seguimiento para campeones, objetos, runas y sistemas.",
+            "Ajustes a campeones dominantes (Jayce, Nidalee, Ambessa) y mejoras a selecciones de bajo rendimiento (Aurora, Ekko, Lee Sin).",
+            "Cambios a objetos (Guantelete de hielo, Eco de Luden, objetos de impacto crítico) y a la runa Botanista.",
+            "Ajustes al sistema de botines de campeón para reducir el castigo por ventaja inicial.",
+            "Eliminación de la regla de descenso por inactividad a partir de nivel Maestro."
+        ],
+        "champions": [
+            {
+                "name": "Jayce",
+                "type": "nerf",
+                "summary": "Reducción de su armadura básica para disminuir la seguridad en sus intercambios iniciales en calle."
+            },
+            {
+                "name": "Nidalee",
+                "type": "nerf",
+                "summary": "Reducción de durabilidad básica y velocidad de movimiento de su pasiva para ajustar su dominio e intangibilidad."
+            },
+            {
+                "name": "Ambessa",
+                "type": "nerf",
+                "summary": "Reducción del daño de ejecución y mitigación de daño en su habilidad definitiva."
+            },
+            {
+                "name": "Aurora",
+                "type": "buff",
+                "summary": "Aumento del daño en su primera y tercera habilidad para compensar el impacto de los cambios de objetos y runas."
+            },
+            {
+                "name": "Sona",
+                "type": "nerf",
+                "summary": "Reducción de la curación de su segunda habilidad y aumento del enfriamiento de su definitiva."
+            },
+            {
+                "name": "Ekko",
+                "type": "buff",
+                "summary": "Aumento del escalado por poder de habilidad en su pasiva y en el daño por vida faltante de su segunda habilidad."
+            },
+            {
+                "name": "Kayle",
+                "type": "nerf",
+                "summary": "Reducción del daño e intercambio temprano junto a menores costes de maná para mejorar su gestión."
+            },
+            {
+                "name": "Hecarim",
+                "type": "nerf",
+                "summary": "Reducción de la velocidad de movimiento adicional tras impactar con su primera habilidad."
+            },
+            {
+                "name": "Lee Sin",
+                "type": "buff",
+                "summary": "Aumento del valor de escudo y omnisucción de su segunda habilidad para potenciar su rol de luchador."
+            },
+            {
+                "name": "Zilean",
+                "type": "nerf",
+                "summary": "Reducción del daño básico de la primera habilidad y mayor enfriamiento en su tercera habilidad."
+            }
+        ],
+        "items": [
+            {
+                "name": "Guantelete de hielo",
+                "type": "buff",
+                "summary": "Reducción de precio (-100 de oro) e incremento de vida máxima (+50)."
+            },
+            {
+                "name": "Eco de Luden",
+                "type": "buff",
+                "summary": "Aumento del daño de la pasiva Eco y reducción de 1 segundo en su enfriamiento."
+            },
+            {
+                "name": "Disparador magnético",
+                "type": "buff",
+                "summary": "Aumento del daño de ataque básico (+5 DA)."
+            },
+            {
+                "name": "Recuerdos de lord Dominik",
+                "type": "buff",
+                "summary": "Aumento del daño de ataque básico (+5 DA)."
+            },
+            {
+                "name": "Filoveloz de Navori",
+                "type": "buff",
+                "summary": "Reducción de precio (-100 de oro)."
+            }
+        ]
+    },
+    {
+        "version": "7.2a",
+        "highlights": [
+            "Ajustes de equilibrio para campeones dominantes en jungla (Nidalee, Warwick) y soporte (Senna).",
+            "Mejoras a Skarner y Yuumi para restaurar su impacto y presencia en partida.",
+            "Ajustes a la línea de objetos de Lágrima de la diosa (Manamune, Abrazo del serafín) y Hoja del rey arruinado.",
+            "Debilitación a las Botas quebrantarmaduras para reducir su efectividad general.",
+            "Ajustes de equilibrio, aumentos y ritmo de partida para el modo AAAARAM."
+        ],
+        "champions": [
+            {
+                "name": "Nidalee",
+                "type": "nerf",
+                "summary": "Reducción de su daño explosivo básico y del escalado de armadura/resistencia mágica en su forma felina."
+            },
+            {
+                "name": "Warwick",
+                "type": "nerf",
+                "summary": "Reducción ligera de la relación de daño de ataque en su pasiva y del escalado por poder de habilidad en su primera habilidad."
+            },
+            {
+                "name": "Skarner",
+                "type": "buff",
+                "summary": "Aumento del daño por vida máxima, mayor escudo y reducción de enfriamientos en sus habilidades básicas."
+            },
+            {
+                "name": "Senna",
+                "type": "nerf",
+                "summary": "Reducción del daño por vida actual en su pasiva y ajuste a la progresión del escudo de su definitiva."
+            },
+            {
+                "name": "Yuumi",
+                "type": "buff",
+                "summary": "Menor coste de maná en su tercera habilidad e incremento en la curación básica de su definitiva."
+            }
+        ],
+        "items": [
+            {
+                "name": "Lágrima de la diosa",
+                "type": "nerf",
+                "summary": "Reducción del maná obtenido por acumulación para frenar su velocidad de progresión."
+            },
+            {
+                "name": "Manamune",
+                "type": "nerf",
+                "summary": "Menor velocidad de acumulación de maná y reducción del daño adicional por relación de DA en Muramana."
+            },
+            {
+                "name": "Abrazo del serafín",
+                "type": "nerf",
+                "summary": "Reducción de la relación de maná que se convierte en escudo al activarse Salvavidas."
+            },
+            {
+                "name": "Hoja del rey arruinado",
+                "type": "nerf",
+                "summary": "Reducción del daño en función de la vida actual para campeones cuerpo a cuerpo."
+            },
+            {
+                "name": "Botas quebrantarmaduras",
+                "type": "nerf",
+                "summary": "Reducción de las estadísticas básicas de daño de ataque y penetración de armadura."
+            }
+        ]
+    },
+    {
+        "version": "7.2",
+        "highlights": [
+            "Nuevo campeón: Yunara, la Devota Kinkou (disponible el 9 de julio).",
+            "Actualización artística y de sostenibilidad (ASU) completa para Ahri.",
+            "Inicio de la Temporada Clasificatoria 22 con un nuevo sistema de Energía Clasificatoria.",
+            "Rediseño completo de los encantamientos con activas: ahora ligados a las clases de los campeones.",
+            "Llegada de las Botas de Nivel 3 y reestructuración completa de los objetos de mago.",
+            "Ajuste a la penetración de armadura adicional para K'Sante y Yasuo.",
+            "Debilitación generalizada al poder de las runas para priorizar objetos y kits de campeones."
+        ],
+        "champions": [
+            {
+                "name": "Zyra",
+                "type": "adjust",
+                "summary": "Reducción de la relación de AP de sus plantas (15% -> 10%), pero ahora heredan su penetración mágica."
+            },
+            {
+                "name": "Annie",
+                "type": "buff",
+                "summary": "Los ataques de Tibbers ahora heredan la penetración mágica y porcentaje de penetración de Annie."
+            },
+            {
+                "name": "Yasuo",
+                "type": "adjust",
+                "summary": "Escudo de la pasiva ajustado hacia el juego tardío. Mayor enfriamiento temprano en W. Penetración de armadura de la R ahora solo aplica a armadura adicional (40% -> 55%)."
+            },
+            {
+                "name": "K'Sante",
+                "type": "nerf",
+                "summary": "La penetración de armadura de su R (Órdago) ahora se aplica únicamente a la armadura adicional del enemigo."
+            },
+            {
+                "name": "Kai'Sa",
+                "type": "buff",
+                "summary": "Aumento del alcance de reposicionamiento alrededor del objetivo al usar la definitiva (4 -> 5.5)."
+            },
+            {
+                "name": "Kayn",
+                "type": "buff",
+                "summary": "Mejora de calidad en la R: menor tiempo de recuperación al salir del objetivo y mayor distancia de salida para ambas formas."
+            },
+            {
+                "name": "Norra",
+                "type": "nerf",
+                "summary": "Reducción en la duración de desaparición de la habilidad 2 (2.25s -> 1.5s) y añade ralentización de 80% al reaparecer."
+            },
+            {
+                "name": "Syndra",
+                "type": "buff",
+                "summary": "Aumento del alcance del empujón de las esferas oscuras en la habilidad 3 (7.2 -> 7.5) para facilitar combos."
+            },
+            {
+                "name": "Orianna",
+                "type": "buff",
+                "summary": "Aumento del alcance de su habilidad definitiva Onda de Choque (3 -> 3.25)."
+            },
+            {
+                "name": "Fiddlesticks",
+                "type": "adjust",
+                "summary": "Menor margen de tiempo para aterrorizar al revelar visión y corrección de errores en la pasiva de terror."
+            },
+            {
+                "name": "Varus",
+                "type": "buff",
+                "summary": "La definitiva aplica las acumulaciones de Infección mucho más rápido (3s -> 1.5s)."
+            },
+            {
+                "name": "Zed",
+                "type": "nerf",
+                "summary": "Se añade un bloqueo de 0.5s tras usar la R antes de poder reactivarla, y mayor enfriamiento en niveles avanzados."
+            },
+            {
+                "name": "Darius",
+                "type": "buff",
+                "summary": "Asesinar a un objetivo con Golpe Atroz (Habilidad 2) restaura 50% de su enfriamiento y 100% del maná."
+            },
+            {
+                "name": "Lee Sin",
+                "type": "adjust",
+                "summary": "Reducción del daño explosivo de AD adicional en sus habilidades, redistribuido hacia daño básico y escalados de vida para orientarlo a luchador."
+            }
+        ],
+        "items": [
+            {
+                "name": "Cortasendas",
+                "type": "buff",
+                "summary": "Nuevo objeto activo de iniciación para colosos. Otorga deslizamiento con ralentización del 40%."
+            },
+            {
+                "name": "Chupasangres",
+                "type": "buff",
+                "summary": "Nuevo objeto activo para luchadores que otorga cura basada en el daño de ataque y vida faltante."
+            },
+            {
+                "name": "Cimitarra mercurial",
+                "type": "adjust",
+                "summary": "Rediseñada con la activa de Fajín de mercurio integrada para limpiar control de masas."
+            },
+            {
+                "name": "Viento huracanado",
+                "type": "buff",
+                "summary": "Objeto activo para tiradores de crítico que proporciona un deslizamiento y proyectiles de ejecución."
+            },
+            {
+                "name": "Reloj de arena de Zhonya",
+                "type": "adjust",
+                "summary": "Pasa a ser un objeto completado de mago que otorga Estasis activa junto a AP y Armadura."
+            },
+            {
+                "name": "Antorcha de fuego negro",
+                "type": "buff",
+                "summary": "Nuevo primer objeto de mago enfocado en daño continuo y quemaduras que aumenta el AP por cada enemigo afectado."
+            },
+            {
+                "name": "Sobrecarga tormentosa",
+                "type": "buff",
+                "summary": "Nuevo objeto de daño explosivo para magos que otorga penetración mágica fija y ráfaga de daño tras golpear."
+            },
+            {
+                "name": "Sombrero mortal de Rabadon",
+                "type": "adjust",
+                "summary": "Aumento del AP básico (100 -> 130) y pasiva modificada a una amplificación fija del 30% de AP."
+            },
+            {
+                "name": "Eco de Luden",
+                "type": "adjust",
+                "summary": "Reducción de precio, mayor AP (100) y maná (500). Pasiva cambiada a un enfriamiento fijo de 10s en lugar de cargas."
+            },
+            {
+                "name": "Ángel de la guarda",
+                "type": "buff",
+                "summary": "Reducción de precio (-200 oro), más AD (+5) y ahora restaura el 100% del maná al revivir con menor enfriamiento (180s)."
+            },
+            {
+                "name": "Botas de Nivel 3",
+                "type": "buff",
+                "summary": "Nuevas mejoras de botas disponibles a partir del minuto 10 con potentes efectos pasivos de clase."
+            }
+        ]
+    },
+    {
+        "version": "7.1h",
+        "highlights": [
+            "Mejoras de rendimiento y escalados para Thresh y Sona en el rol de Soporte.",
+            "Ajustes de durabilidad y velocidad de limpieza para Nautilus en la Jungla.",
+            "Mejoras de poder general y estadísticas por nivel para Skarner y Gnar.",
+            "Ajustes de control de masas y presencia para Seraphine y Taliyah.",
+            "Aumento de vida básica para el objeto Mecanoespada punki."
+        ],
+        "champions": [
+            {
+                "name": "Thresh",
+                "type": "buff",
+                "summary": "Aumento del alcance de almas (12 -> 15), menor enfriamiento avanzado en la Q con mayor daño/AP, y mayor daño en el ataque potenciado de la E."
+            },
+            {
+                "name": "Nunu y Willump",
+                "type": "nerf",
+                "summary": "Reducción en el escalado de daño y curación por vida adicional en la Q, y menor daño básico en las bolas de nieve de la E."
+            },
+            {
+                "name": "Seraphine",
+                "type": "buff",
+                "summary": "Mayor ratio de curación en la Habilidad 2 y aumento en la duración del encantamiento de su definitiva (R)."
+            },
+            {
+                "name": "Skarner",
+                "type": "buff",
+                "summary": "Aumento de AD y vida por nivel, mayor daño por vida máxima en la Q (9% -> 10%) y mayor ralentización en Q y W."
+            },
+            {
+                "name": "Nautilus",
+                "type": "nerf",
+                "summary": "Reducción drástica del daño adicional contra monstruos de la jungla en W y E (a 125%) y menor escudo básico por vida máxima."
+            },
+            {
+                "name": "Gnar",
+                "type": "buff",
+                "summary": "Aumento de vida, armadura y resistencia mágica adicionales en la forma MegaGnar, junto a mayor daño por vida máxima en Híper (W)."
+            },
+            {
+                "name": "Taliyah",
+                "type": "nerf",
+                "summary": "Menor velocidad de movimiento básica y de la pasiva, además de menor reducción de enfriamiento al usar la Q sobre tierra árida."
+            },
+            {
+                "name": "Sona",
+                "type": "buff",
+                "summary": "Aumento de la curación básica en la Habilidad 2 (+20 en todos los niveles) y mayor velocidad de movimiento en la Habilidad 3."
+            }
+        ],
+        "items": [
+            {
+                "name": "Mecanoespada punki",
+                "type": "buff",
+                "summary": "Aumento significativo de la vida básica otorgada (250 -> 400)."
+            }
+        ]
+    },
+    {
+        "version": "7.1g",
+        "highlights": [
+            "Lanzamiento del nuevo campeón Skarner, el Soberano Primigenio (disponible el 12 de junio).",
+            "Ajuste a la runa Demoler: menor daño a estructuras (100 + 22% de vida) pero con un enfriamiento reducido (30s).",
+            "Aplastamiento desalentador (Smite azul) nerfeado: ahora inflige 40 de daño verdadero fijo a campeones en todos los niveles.",
+            "Nerf a la Mejora Roja (Ancestro ígneo): reducción significativa del daño de quemadura por segundo contra campeones."
+        ],
+        "champions": [
+            {
+                "name": "Aurora",
+                "type": "nerf",
+                "summary": "Reducción del daño básico y del escalado de poder de habilidad (AP) tanto en el primer lanzamiento como en la reactivación de su Habilidad 1."
+            },
+            {
+                "name": "Zoe",
+                "type": "buff",
+                "summary": "Aumento del daño básico en la Habilidad 1 (Pádel estelar) y mayor daño base mágico/verdadero en la Habilidad 3 (Burbuja somnífera)."
+            },
+            {
+                "name": "Diana",
+                "type": "buff",
+                "summary": "Aumento del daño de su pasiva (Hoja lunaplata) contra monstruos de la jungla (75% -> 100%) para acelerar su limpieza."
+            },
+            {
+                "name": "Heimerdinger",
+                "type": "buff",
+                "summary": "Mejora general a la resistencia y daño de sus torretas: más armadura, mayor escalado de vida y láser por AP, y menor daño recibido de ataques cuerpo a cuerpo."
+            }
+        ],
+        "items": [
+            {
+                "name": "Filo infinito",
+                "type": "buff",
+                "summary": "Aumento del daño de ataque básico (60 -> 65) para potenciar a los tiradores enfocados en golpes críticos."
+            },
+            {
+                "name": "Cuchilla negra",
+                "type": "buff",
+                "summary": "Aumento de las acumulaciones máximas de reducción de armadura (4 -> 5), elevando la reducción máxima de 24% a 30%."
+            }
+        ]
+    }
 ]

@@ -221,13 +221,574 @@ body {
 /* RECOMENDACIÓN */
 .recommendation-card {
     background: var(--card-bg);
-    padding: 20px;
+    padding: 24px;
     border-radius: 12px;
     border: 1px solid var(--accent-blue);
+    margin-top: 30px;
 }
 
 .recommendation-text {
-    white-space: pre-line;
+    white-space: pre-wrap;
     line-height: 1.6;
     color: #e2e8f0;
+}
+
+/* Dashboard de Recomendaciones */
+.recommendation-dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 16px;
+}
+
+.recommendation-title {
+    font-size: 1.3rem;
+    color: var(--text-color);
+    margin: 0;
+    border-bottom: 2px solid #334155;
+    padding-bottom: 8px;
+}
+
+.recommendation-champions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.champ-rec-card {
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.champ-rec-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-blue);
+}
+
+.champ-rec-header {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.champ-rec-name-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.champ-rec-number {
+    font-weight: bold;
+    color: var(--accent-blue);
+    font-size: 1.15rem;
+}
+
+.champ-rec-emoji {
+    font-size: 1.2rem;
+}
+
+.champ-rec-name {
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: var(--text-color);
+}
+
+.champ-rec-stars {
+    color: #fbbf24;
+    font-size: 0.95rem;
+    letter-spacing: 2px;
+}
+
+.champ-rec-summary {
+    font-style: italic;
+    color: #94a3b8;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin-top: 4px;
+}
+
+.champ-rec-body h4 {
+    margin: 0 0 8px 0;
+    font-size: 0.95rem;
+    color: var(--accent-blue);
+}
+
+.champ-rec-body ul {
+    margin: 0;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.champ-rec-body li {
+    font-size: 0.85rem;
+    color: #cbd5e1;
+    line-height: 1.5;
+}
+
+/* Evitar (Full Width) */
+.recommendation-avoid-box {
+    background: rgba(244, 63, 94, 0.08);
+    border: 1px solid rgba(244, 63, 94, 0.3);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.recommendation-avoid-box h3 {
+    margin: 0 0 12px 0;
+    color: var(--accent-red);
+    font-size: 1.15rem;
+}
+
+.recommendation-avoid-box ul {
+    margin: 0;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.recommendation-avoid-box li {
+    font-size: 0.9rem;
+    color: #cbd5e1;
+    line-height: 1.5;
+}
+
+/* Veredicto Rápido (Full Width) */
+.recommendation-verdict-box {
+    background: rgba(56, 189, 248, 0.08);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.recommendation-verdict-box h3 {
+    margin: 0 0 8px 0;
+    color: var(--accent-blue);
+    font-size: 1.15rem;
+}
+
+.recommendation-verdict-box p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #cbd5e1;
+    line-height: 1.6;
+}
+
+/* Dashboard de Planteamiento de Partida (Game Plan) */
+.game-plan-dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 16px;
+}
+
+.game-plan-intro-box {
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #e2e8f0;
+}
+
+.game-plan-teams-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.team-icons-card {
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+}
+
+.team-icons-card.ally-team {
+    border-left: 4px solid var(--accent-blue);
+}
+
+.team-icons-card.enemy-team {
+    border-left: 4px solid var(--accent-red);
+}
+
+.team-icons-card h3 {
+    margin: 0 0 16px 0;
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+.team-icons-row {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.champ-icon-role-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.role-abbr-badge {
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.role-abbr-badge.ally {
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--accent-blue);
+}
+
+.role-abbr-badge.enemy {
+    background: rgba(244, 63, 94, 0.15);
+    color: var(--accent-red);
+}
+
+.champ-icon-img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #334155;
+}
+
+.team-icons-card.ally-team .champ-icon-img {
+    border-color: var(--accent-blue);
+}
+
+.team-icons-card.enemy-team .champ-icon-img {
+    border-color: var(--accent-red);
+}
+
+.champ-icon-placeholder {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #1e293b;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    border: 2px dashed #475569;
+}
+
+.game-plan-build-card {
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    padding: 24px;
+}
+
+.game-plan-build-card h3 {
+    margin: 0 0 20px 0;
+    font-size: 1.15rem;
+    color: var(--accent-blue);
+    border-bottom: 1px solid #334155;
+    padding-bottom: 10px;
+}
+
+.build-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.build-item-row {
+    padding-bottom: 16px;
+    border-bottom: 1px solid #1e293b;
+}
+
+.build-item-row:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.build-item-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.build-item-icon-img {
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    object-fit: cover;
+    border: 1px solid #475569;
+}
+
+.build-item-bullet {
+    font-size: 1.1rem;
+}
+
+.build-item-name {
+    font-weight: bold;
+    font-size: 1.05rem;
+    color: var(--text-color);
+}
+
+.build-item-desc {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #cbd5e1;
+    line-height: 1.5;
+    padding-left: 40px;
+}
+
+.build-guide-link-box {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid #1e293b;
+    font-size: 0.9rem;
+    color: #94a3b8;
+}
+
+.build-guide-link {
+    color: var(--accent-blue);
+    text-decoration: none;
+    font-weight: bold;
+    word-break: break-all;
+    transition: color 0.2s ease;
+}
+
+.build-guide-link:hover {
+    color: #7dd3fc;
+    text-decoration: underline;
+}
+
+.game-plan-strategy-parent-card {
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    padding: 24px;
+}
+
+.game-plan-strategy-parent-card h3 {
+    margin: 0 0 20px 0;
+    font-size: 1.15rem;
+    color: var(--text-color);
+    border-bottom: 1px solid #334155;
+    padding-bottom: 10px;
+}
+
+.game-plan-strategy-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.strategy-phase-card {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.strategy-phase-card h4 {
+    margin: 0 0 12px 0;
+    font-size: 1.05rem;
+    color: var(--accent-blue);
+}
+
+.strategy-phase-card ul {
+    margin: 0;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.strategy-phase-card li {
+    font-size: 0.88rem;
+    color: #cbd5e1;
+    line-height: 1.5;
+}
+
+.game-plan-golden-rule-card {
+    background: rgba(251, 191, 36, 0.08);
+    border: 1px solid rgba(251, 191, 36, 0.3);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.game-plan-golden-rule-card h3 {
+    margin: 0 0 8px 0;
+    color: #fbbf24;
+    font-size: 1.15rem;
+}
+
+.game-plan-golden-rule-card p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #f8fafc;
+    line-height: 1.6;
+}
+
+/* RESPONSIVIDAD PARA MÓVILES */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .header {
+        margin-bottom: 16px;
+    }
+
+    .header h1 {
+        font-size: 1.6rem;
+    }
+
+    .draft-grid {
+        grid-template-columns: 1fr 1fr; /* Aliado y Enemigo lado a lado */
+        gap: 12px;
+    }
+
+    .team-panel.ally {
+        order: 1;
+    }
+
+    .team-panel.enemy {
+        order: 2;
+    }
+
+    .center-panel {
+        order: 3;
+        grid-column: span 2; /* Tu Rol ocupa el ancho completo abajo */
+        padding: 16px;
+    }
+
+    .role-selector {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px;
+    }
+
+    .role-btn {
+        flex: 1 1 calc(33.33% - 6px);
+        padding: 8px;
+        font-size: 0.85rem;
+        text-align: center;
+    }
+
+    .team-panel {
+        padding: 12px;
+    }
+
+    .team-panel h2 {
+        font-size: 1.1rem;
+        justify-content: center;
+    }
+
+    .slot {
+        flex-direction: column; /* Apilar elementos de slot verticalmente para ahorrar espacio horizontal */
+        align-items: center;
+        gap: 6px;
+        padding: 8px 4px;
+        text-align: center;
+    }
+
+    .slot-label {
+        font-size: 0.75rem;
+    }
+
+    .btn-select {
+        padding: 4px 8px;
+        font-size: 0.75rem;
+        width: 100%;
+    }
+
+    .selected-champ {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .selected-champ img {
+        width: 28px;
+        height: 28px;
+    }
+
+    .selected-champ span {
+        font-size: 0.75rem;
+    }
+
+    .champions-list {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        max-height: 250px;
+    }
+
+    .champ-card img {
+        width: 42px;
+        height: 42px;
+    }
+
+    .recommendation-champions-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .game-plan-teams-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .game-plan-strategy-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .build-item-desc {
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .role-btn {
+        flex: 1 1 calc(50% - 6px); /* 2 por fila en pantallas muy pequeñas */
+    }
+
+    .modal-content {
+        padding: 16px;
+        width: 95%;
+    }
+}
+
+/* OBJETOS INLINE */
+.inline-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #334155;
+    padding: 2px 8px;
+    border-radius: 12px;
+    vertical-align: middle;
+    margin: 0 4px;
+    border: 1px solid #475569;
+}
+
+.inline-item-icon {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    object-fit: cover;
 }

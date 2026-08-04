@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { fetchGeminiResponse, getRecentGeneralChanges, getRelevantChampionChanges } from '../services/gemini';
+import { fetchGeminiResponse, getRecentGeneralChanges, getRelevantChampionChanges, getRelevantItemChanges } from '../services/gemini';
 import { CHAMPIONS } from '../data/champions.ts';
 import type { DraftState, Role } from '../types';
 
@@ -57,8 +57,33 @@ export const useGeminiAI = () => {
             .join(', ');
 
         const availableChampionsList = CHAMPIONS.map(c => c.name).join(', ');
+        const currentDate = new Date().toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
+
+        const generalChanges = getRecentGeneralChanges(2);
+        const champChanges = getRelevantChampionChanges([
+            ...Object.values(draft.ally).map(c => c?.name || ''),
+            ...Object.values(draft.enemy).map(c => c?.name || '')
+        ]);
+        const itemChanges = getRelevantItemChanges();
+
+        const patchNotesText = (generalChanges || champChanges || itemChanges)
+            ? `
+=== DESTACADOS DE PARCHES RECIENTES ===
+${generalChanges}
+
+=== CAMBIOS RECIENTES DE CAMPEONES EN ESTA PARTIDA ===
+${champChanges}
+
+=== CAMBIOS RECIENTES DE OBJETOS EN ESTAS VERSIONES ===
+${itemChanges}
+`
+            : '';
 
         const promptText = `
+=== FECHA ACTUAL Y PARCHE VIGENTE ===
+Fecha de hoy: ${currentDate}
+Utiliza tu herramienta de búsqueda web (Google Search Grounding) para buscar cuál es el último parche oficial y vigente de Wild Rift en base a la fecha de hoy, y adapta tus recomendaciones de campeones y explicaciones estrictamente a dicho parche y metajuego.
+
 === MI CHAMPION POOL / CAMPEONES QUE SÉ JUGAR ===
 [${myMainPool || 'No hay favoritos seleccionados, usar lista general'}]
 
@@ -72,31 +97,23 @@ export const useGeminiAI = () => {
 EQUIPO ALIADO: ${allyTeamNames}
 EQUIPO ENEMIGO: ${enemyTeamNames}
 LÍNEA A ANALIZAR: ${myRole.toUpperCase()}
-
-=== DESTACADOS DE PARCHES RECIENTES ===
-${getRecentGeneralChanges(2)}
-
-=== CAMBIOS RECIENTES DE CAMPEONES EN ESTA PARTIDA ===
-${getRelevantChampionChanges([
-            ...Object.values(draft.ally).map(c => c?.name || ''),
-            ...Object.values(draft.enemy).map(c => c?.name || '')
-        ])}
+${patchNotesText}
 
 INSTRUCCIONES DE FORMATO OBLIGATORIO:
 Responde EXACTAMENTE con la siguiente estructura en Markdown, usando emojis, estrellas (⭐⭐⭐⭐⭐) y negritas. NO agregues ni quites secciones.
 🏆 Tus Mejores Opciones de ${myRole.toUpperCase()}
 
-1. ⚔️ [NOMBRE DEL CAMPEÓN #1] ⭐⭐⭐⭐⭐ ([Frase corta de resumen])
+1.[NOMBRE DEL CAMPEÓN #1] ⭐⭐⭐⭐⭐ ([Frase corta de resumen])
 Por qué elegirlo:
 - [Punto clave 1 explicando interacción directa contra campeones enemigos concretos y sus habilidades].
 - [Punto clave 2 explicando sinergia con el equipo aliado o rol en la partida].
 
-2. 🛡️ [NOMBRE DEL CAMPEÓN #2] ⭐⭐⭐⭐⭐ ([Frase corta de resumen])
+2.[NOMBRE DEL CAMPEÓN #2] ⭐⭐⭐⭐⭐ ([Frase corta de resumen])
 Por qué elegirlo:
 - [Punto clave 1].
 - [Punto clave 2].
 
-3. 🥊 [NOMBRE DEL CAMPEÓN #3] ⭐⭐⭐⭐ ([Frase corta de resumen])
+3.[NOMBRE DEL CAMPEÓN #3] ⭐⭐⭐⭐ ([Frase corta de resumen])
 Por qué elegirlo:
 - [Punto clave 1].
 - [Punto clave 2].
@@ -141,22 +158,31 @@ INSTRUCCIONES DE SELECCIÓN (ESTRICTO):
             .join(', ');
 
         const myChampionName = draft.ally[myRole]?.name || 'No seleccionado aún';
+        const currentDate = new Date().toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
+        const generalChanges = getRecentGeneralChanges(2);
+        const champChanges = getRelevantChampionChanges([
+            ...Object.values(draft.ally).map(c => c?.name || ''),
+            ...Object.values(draft.enemy).map(c => c?.name || '')
+        ]);
+        const itemChanges = getRelevantItemChanges();
+
+        const patchNotesText = (generalChanges || champChanges || itemChanges)
+            ? `
+
+`
+            : '';
 
         const promptText = `
+=== FECHA ACTUAL Y PARCHE VIGENTE ===
+Fecha de hoy: ${currentDate}
+Utiliza tu herramienta de búsqueda web (Google Search Grounding) para buscar cuál es el último parche oficial y vigente de Wild Rift en base a la fecha de hoy, y adapta tus recomendaciones de campeones y explicaciones estrictamente a dicho parche y metajuego.
+
 === PLANTEAMIENTO DE PARTIDA COMPLETA (WILD RIFT) ===
 - Mi Línea: ${myRole.toUpperCase()}
 - Mi Campeón Elegido: ${myChampionName}
 - Composición Aliada: ${allyTeamNames}
 - Composición Enemiga: ${enemyTeamNames}
-
-=== DESTACADOS DE PARCHES RECIENTES ===
-${getRecentGeneralChanges(2)}
-
-=== CAMBIOS RECIENTES DE CAMPEONES EN ESTA PARTIDA ===
-${getRelevantChampionChanges([
-            ...Object.values(draft.ally).map(c => c?.name || ''),
-            ...Object.values(draft.enemy).map(c => c?.name || '')
-        ])}
+${patchNotesText}
 
 INSTRUCCIONES DE FORMATO OBLIGATORIO:
 Responde EXACTAMENTE utilizando el formato de Markdown, emojis y tono estratégico que se muestra en la siguiente plantilla de ejemplo. NO agregues ni quites secciones. Asume que la partida ya va a empezar con los campeones seleccionados.
@@ -164,26 +190,28 @@ Responde EXACTAMENTE utilizando el formato de Markdown, emojis y tono estratégi
 ¡Selección impecable sacando a ${myChampionName}! Viendo la pantalla de carga final, el rival confirmó una composición [menciona una característica clave del equipo enemigo, ej. repleta de daño AP / con mucho CC / de alto escalado] que tu kit va a aprovechar.
 
 Distribución de líneas:
-• **Equipo Enemigo:** [Lista los 5 campeones enemigos especificando su línea entre paréntesis, ej: Top/Barón, JG, Mid, ADC, Support]
-• **Tu Equipo:** [Lista los 5 campeones aliados especificando su línea entre paréntesis]
+• Equipo Enemigo: [Lista los 5 campeones enemigos especificando su línea entre paréntesis, ej: Top/Barón, JG, Mid, ADC, Support]
+• Tu Equipo: [Lista los 5 campeones aliados especificando su línea entre paréntesis]
 
 🛠️ Build e Ítems Clave
-- **[Nombre Ítem 1]:** [Explicación detallada de por qué este ítem es clave contra las amenazas del equipo enemigo actual].
-- **[Nombre Ítem 2]:** [Explicación detallada, ej: OBLIGATORIO Y TEMPRANO si hay amenazas AP o curaciones pesadas].
-- **[Nombre Ítem 3]:** [Explicación de ítem defensivo, anti-curas o penetración necesario para esta partida].
-- **[Botas y Encantamiento]:** [Especificar tipo de botas y qué encantamiento activo elegir (ej. Estasis, Gloria, Repulsión) y por qué].
+-[Nombre Ítem 1]: [Explicación detallada de por qué este primer ítem nuclear/clave es vital contra las amenazas del equipo enemigo actual].
+-[Nombre Ítem 2]: [Explicación detallada del segundo ítem clave de tu núcleo].
+-[Nombre Ítem 3]: [Explicación del tercer ítem clave o defensivo temprano necesario para esta partida].
+-[Botas y Encantamiento]: [Especificar qué tipo de botas comprar, qué encantamiento activo elegir (ej. Estasis, Gloria, Fisión) y por qué].
+-[Opciones para el 5° Ítem]: [Dar opciones y explicaciones de qué ítems situacionales comprar en el quinto slot].
+-[Opciones para el 6° Ítem]: [Dar opciones y explicaciones de qué ítems situacionales comprar para cerrar la build en el sexto slot].
 
 🎯 Plan de Juego por Fases
 
 1. Early Game (Niveles 1 al 5)
-- **[Punto Clave 1 sobre la Fase de Líneas / Limpieza]:** Estrategia específica contra el rival directo de tu línea o jungla enemigo.
-- **[Punto Clave 2 sobre Ganks / Rotaciones]:** A qué línea gankear o qué objetivos priorizar en los primeros 5 minutos.
+-[Punto Clave 1 sobre la Fase de Líneas / Limpieza]: Estrategia específica contra el rival directo de tu línea o jungla enemigo.
+-[Punto Clave 2 sobre Ganks / Rotaciones]: A qué línea gankear o qué objetivos priorizar en los primeros 5 minutos.
 
 ⚔️ Cómo Jugar las Peleas de Equipo (Teamfights)
-- **Prioridad de Objetivos:** [LISTA EN MAYÚSCULAS DE OBJETIVOS PRIORITARIOS ➔ OBJETIVOS SECUNDARIOS]
-- **[Encabezado con mecánica o habilidad del enemigo a tener en cuenta]:** Explicación de cómo reaccionar o mitigar las mayores amenazas del rival.
-- **[Instrucción de Posicionamiento / Inicio de Pelea]:** Cómo iniciar, cuándo entrar (ej: entrar 2 segundos después, flanquear, hacer peel) y en quién enfocar el daño.
-- **[Precaución Específica]:** Un peligro puntual al que debes prestar atención durante las peleas masivas.
+-[Prioridad de Objetivos]: [LISTA EN MAYÚSCULAS DE OBJETIVOS PRIORITARIOS ➔ OBJETIVOS SECUNDARIOS]
+-[Encabezado con mecánica o habilidad del enemigo a tener en cuenta]: Explicación de cómo reaccionar o mitigar las mayores amenazas del rival.
+-[Instrucción de Posicionamiento / Inicio de Pelea]:** Cómo iniciar, cuándo entrar (ej: entrar 2 segundos después, flanquear, hacer peel) y en quién enfocar el daño.
+-[Precaución Específica]:** Un peligro puntual al que debes prestar atención durante las peleas masivas.
 
 💡 Regla de Oro para esta Partida
 [Un resumen motivador de 2 o 3 líneas con la clave táctica definitiva para ganar esta partida específica].

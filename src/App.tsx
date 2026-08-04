@@ -90,6 +90,8 @@ export default function App() {
                 <RecommendationCard
                     recommendation={recommendation}
                     analysisMode={analysisMode}
+                    draft={draft}
+                    myRole={myRole}
                 />
             )}
         </div>
