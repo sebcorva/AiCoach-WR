@@ -9,8 +9,11 @@ export const useGeminiAI = () => {
     const [analysisMode, setAnalysisMode] = useState<'DRAFT' | 'GAME_PLAN'>('DRAFT');
 
     const callGeminiAI = async (promptText: string) => {
+        const isProd = import.meta.env.PROD;
+        const apiGatewayUrl = import.meta.env.VITE_API_GATEWAY_URL;
         const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-        if (!apiKey) {
+
+        if (!isProd && !apiGatewayUrl && !apiKey) {
             alert('Configura la variable VITE_GEMINI_API_KEY en tu archivo .env');
             return;
         }
@@ -19,7 +22,7 @@ export const useGeminiAI = () => {
         setRecommendation('');
 
         try {
-            const textOutput = await fetchGeminiResponse(promptText, apiKey);
+            const textOutput = await fetchGeminiResponse(promptText, apiKey || '');
             setRecommendation(textOutput);
         } catch (err: any) {
             console.error(err);
