@@ -27,7 +27,8 @@ export default async function handler(req, res) {
             return res.status(500).json({ message: 'GEMINI_API_KEY is not configured on Vercel environment variables' });
         }
 
-        const API_URL = "https://generativelanguage.googleapis.com/v1beta/models";
+        const API_URL_BETA = "https://generativelanguage.googleapis.com/v1beta/models";
+        const API_URL_V1 = "https://generativelanguage.googleapis.com/v1/models";
         const models = [
             "gemini-2.5-flash",
             "gemini-2.0-flash",
@@ -40,7 +41,7 @@ export default async function handler(req, res) {
         for (const model of models) {
             try {
                 // 1. Intentar con Google Search Grounding (Búsqueda en Google)
-                const response = await fetch(`${API_URL}/${model}:generateContent?key=${apiKey}`, {
+                const response = await fetch(`${API_URL_BETA}/${model}:generateContent?key=${apiKey}`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
@@ -73,10 +74,10 @@ REGLAS CRÍTICAS DE CONOCIMIENTO Y ACCIÓN:
                     throw new Error(data.error ? data.error.message : "Fallo al generar contenido");
                 }
             } catch (err) {
-                console.warn(`Modelo ${model} con Search falló. Reintentando sin Grounding...`, err);
+                console.warn(`Modelo ${model} con Search falló. Reintentando sin Grounding usando API v1...`, err);
                 try {
-                    // 2. Fallback sin Search Grounding
-                    const response = await fetch(`${API_URL}/${model}:generateContent?key=${apiKey}`, {
+                    // 2. Fallback sin Search Grounding en API v1 (estable)
+                    const response = await fetch(`${API_URL_V1}/${model}:generateContent?key=${apiKey}`, {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
